@@ -76,10 +76,21 @@ class MenuBar extends React.Component {
             </Tooltip>
           </VFlow>
         </VTabs>
+        <RoleLabel {...this.props} />
       </div>
     );
   }
 }
+
+const RoleLabel = props => {
+  const { roleText } = props;
+  const { classes } = useStyles(roleLabelStyles);
+  return (
+    <div className={classes.roleContainer}>
+      <Tag className={classes.roleLabelText}>{roleText}</Tag>
+    </div>
+  );
+};
 
 const roleLabelStyles = theme => ({
   roleContainer: {

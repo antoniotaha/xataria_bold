@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeView from "./view/HomeView";
 import NotHomeView from "./view/NotHomeView";
 import MenuBar from "./components/Menubar";
-import EventsCreateView from "./view/EventsCreateView";
 import { VTabs } from "./components/VTabs";
 import { UserBar } from "./view/user/UserBar";
 
@@ -37,7 +36,7 @@ function App(props) {
           <MenuBar />
         </nav>
         <main className={css(styles.main)}>
-          <Route path="/events" component={EventsCreateView} />
+          <Route exact path="/" component={NotHomeView} />
         </main>
       </Router>
     </ThemeProvider>

@@ -4,9 +4,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeView from "./view/HomeView";
 import NotHomeView from "./view/NotHomeView";
 import MenuBar from "./components/Menubar";
+<<<<<<< HEAD
 import EventsCreateView from "./view/EventsCreateView";
+=======
 import { VTabs } from "./components/VTabs";
 import { UserBar } from "./view/user/UserBar";
+>>>>>>> 57cec484f32675f7a438c7f81116dd292ea08032
 
 function App(props) {
   const { css, location, theme } = props;
@@ -35,12 +38,21 @@ function App(props) {
         <UserBar></UserBar>
         <nav className={css(styles.nav)}>
           <MenuBar />
+<<<<<<< HEAD
+          {/* <Route exact path="/" component={HomeView} />
+        <Route path="/teste" component={NotHomeView} /> */}
+          <Route path="/events" component={EventsCreateView} />
+        </Router>
+      </ThemeProvider>
+    </div>
+=======
         </nav>
         <main className={css(styles.main)}>
-          <Route path="/events" component={EventsCreateView} />
+          <Route exact path="/" component={NotHomeView} />
         </main>
       </Router>
     </ThemeProvider>
+>>>>>>> 57cec484f32675f7a438c7f81116dd292ea08032
   );
 }
 

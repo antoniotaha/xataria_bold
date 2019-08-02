@@ -49,4 +49,4 @@ class DateField extends React.Component {
   };
 }
 
-export default DateField;
+export default withStyles(DateField);
