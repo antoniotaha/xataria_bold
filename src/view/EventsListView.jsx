@@ -1,52 +1,56 @@
 //import { AbsenceDto } from "backend";
-import {
-  Form,
-  Heading,
-  HFlow,
-  DatePickerInput,
-  Grid,
-  ModalBody,
-  ModalFooter,
-  NumberField,
-  TabItem,
-  Tabs,
-  Text,
-  TextArea,
-  TextAreaField,
-  TextInput,
-  TimeInput,
-  VFlow,
-  Select,
-  SelectField,
-  Switch
-} from "bold-ui";
-import DateField from "../components/DateField";
-import TimeField from "../components/TimeField";
-
-import moment from "moment";
+import { Form, Heading, HFlow, DatePickerInput, VFlow, Button } from "bold-ui";
 import React from "react";
-import { FormRenderProps } from "react-final-form";
-import { DATE_ISO } from "../utils/DateUtils";
-import { inclusiveDiff } from "../utils/TimeUtils";
-import SaveRemoveFooter from "./SaveRemoveFooter";
-import { useState } from 'react'
+import timeLineImg from "../images/timeline.png";
+import { useState } from "react";
 
-function EventsListView () {
+function EventsListView(props) {
+  const [valueDataInicio, setValueDataInicio] = useState();
+  const [valueDataFim, setValueDataFim] = useState();
+  const changeDataInicio = selectedDateInicio =>
+    setValueDataInicio(selectedDateInicio);
 
-  const [valueDataInicio, setValueDataInicio] = useState()
-  const [valueDataFim, setValueDataFim] = useState()
-  const changeDataInicio = (selectedDateInicio) => setValueDataInicio(selectedDateInicio)
-  const changeDataFim = (selectedDateFim) => setValueDataFim(selectedDateFim)
-    return (
-      <div>
-        <Heading level={1}>Eventos</Heading>
+  const changeDataFim = selectedDateFim => setValueDataFim(selectedDateFim);
+  return (
+    <div
+      style={{
+        marginTop: 30
+      }}
+    >
+      <VFlow alignItems="center">
         <HFlow hSpacing={1}>
-          <DatePickerInput name="dataInicio" value={valueDataInicio} onChange={changeDataInicio} />
-          <DatePickerInput name="dataFim" value={valueDataFim} onChange={changeDataFim}/>
+          <Heading level={1}>Eventos</Heading>
+          <DatePickerInput
+            name="dataInicio"
+            value={valueDataInicio}
+            onChange={changeDataInicio}
+          />
+          <DatePickerInput
+            name="dataFim"
+            value={valueDataFim}
+            onChange={changeDataFim}
+          />
+          <Button
+            kind="primary"
+            size="small"
+            onClick={() => props.history.push("/events/create")}
+          >
+            Criar novo
+          </Button>
         </HFlow>
-        <img src={"../images/timeline.png"} alt="timeline" />
-      </div>
-    )
-  };
+        <img
+          style={{
+            marginTop: 60,
+            textAlign: "center"
+          }}
+          src={timeLineImg}
+          width="1000"
+          height="600"
+          alt="timeline"
+        />
+      </VFlow>
+    </div>
+  );
+}
 
 export default EventsListView;
