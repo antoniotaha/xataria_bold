@@ -109,16 +109,17 @@ function AltTable() {
     .fill(true)
     .reduce(
       curr => [
-        { nome: "Odilon Ferreira", presenca: "Sim" },
-        { nome: "Rodrigo Costa", presenca: "Sim" },
-        { nome: "Isabelle Pinheiro", presenca: "Sim" },
-        { nome: "Giselle Nascimento", presenca: "Sim" },
-        { nome: "Antonio Taha", presenca: "Sim" },
-        { nome: "Verônica", presenca: "Sim" },
-        { nome: "Gustavo Moser", presenca: "Sim" },
-        { nome: "Teste", presenca: "Sim" },
-        { nome: "Teste", presenca: "Não" },
-        { nome: "Teste", presenca: "Talvez" }
+        {nome: 'Odilon Ferreira', presenca: 'Sim'},
+        {nome: 'Rodrigo Costa', presenca: 'Sim' },
+        {nome: 'Isabelle Pinheiro', presenca: 'Sim'},
+        {nome: 'Giselle Nascimento', presenca: 'Sim'},
+        {nome: 'Antonio Taha', presenca: 'Sim' },
+        {nome: 'Verônica Oliveira', presenca: 'Sim'},
+        {nome: 'Gustavo Moser', presenca: 'Sim'},
+        {nome: 'Teste', presenca: 'Sim' },
+        {nome: 'Teste', presenca: 'Não'},
+        {nome: 'Teste', presenca: 'Talvez'},
+
       ],
       []
     );
