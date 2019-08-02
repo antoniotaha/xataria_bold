@@ -39,7 +39,9 @@ function App(props) {
           <nav className={css(styles.nav)}>
             <MenuBar />
           </nav>
-          <main className={css(styles.main)} />
+          <main className={css(styles.main)}>
+            <Route path="/events" component={EventsCreateView} />
+          </main>
         </div>
       </Router>
     </ThemeProvider>

@@ -18,19 +18,34 @@ import {
   VFlow,
   Select,
   SelectField,
-  Switch
+  Switch,
+  useStyles
 } from "bold-ui";
+import Container from "../components/Container";
 import DateField from "../components/DateField";
 import TimeField from "../components/TimeField";
 
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import { FormRenderProps } from "react-final-form";
 import { DATE_ISO } from "../utils/DateUtils";
 import { inclusiveDiff } from "../utils/TimeUtils";
 import SaveRemoveFooter from "./SaveRemoveFooter";
 
 class EventsCreateView extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      privacidade: 0
+    };
+  }
+
+  onChangePrivacidade() {
+    this.setState({
+      privacidade: !this.state.privacidade
+    });
+  }
+
   componentWillMount() {
     if (this.props.editMode) {
       this.props.load();
@@ -53,14 +68,32 @@ class EventsCreateView extends React.Component {
     const fieldValue = formProps.values;
     const change = formProps.form.change;
     return (
-      <Modal open={true} size="small" onClose={this.props.goBack}>
+      <Modal
+        open={true}
+        size="large"
+        onClose={this.props.goBack}
+        style={{ height: "750px", width: "750px" }}
+      >
         <ModalBody>
+          <Container
+            style={{
+              paddingTop: "3rem",
+              //borderBottom: `1px solid `,
+              ul: {
+                margin: "0rem"
+              }
+            }}
+          >
+            <VFlow vSpacing={1.5}>
+              <Heading level={1}> Registro diário</Heading>
+              <Tabs>
+                <TabItem active>Dados do evento</TabItem>
+                <TabItem>Convidados</TabItem>
+              </Tabs>
+            </VFlow>
+          </Container>
+
           <VFlow vSpacing={2}>
-            <Heading level={1}>{title}</Heading>
-            <Tabs>
-              <TabItem active>Dados do evento</TabItem>
-              <TabItem>Convidados</TabItem>
-            </Tabs>
             <HFlow hSpacing={1}>
               <VFlow vSpacing={0.5}>
                 <Text fontWeight="bold" required="true">
@@ -69,9 +102,9 @@ class EventsCreateView extends React.Component {
 
                 <Switch
                   name="switch"
-                  label="Público"
+                  label={this.state.privacidade ? "Privado" : "Público"}
                   disabled={false}
-                  // onChange={actionHandler}
+                  onChange={() => this.onChangePrivacidade()}
                 />
               </VFlow>
               <VFlow vSpacing={0.5}>
@@ -98,51 +131,45 @@ class EventsCreateView extends React.Component {
             </HFlow>
             <HFlow hSpacing={1}>
               <VFlow vSpacing={0.5}>
-                <Text fontWeight="bold" required="true">
-                  Título
-                </Text>
-                <SelectField
-                  id="collaborator"
-                  name="collaborator"
-                  title="Título"
-                  placeholder="Título do evento"
-                  items={this.props.searchOptions}
-                  itemToString={this.itemToString}
-                  itemIsEqual={this.itemIsEqual}
-                  onChange={this.props.onChangeSearch}
-                  multiple
+                <Text fontWeight="bold">Título</Text>
+                <TextArea
+                  style={{ width: "680px", height: "32px" }}
+                  name="localEvent"
+                  placeholder="Descrição do evento"
+                  onChange={this.onStartChange(fieldValue, change)}
                 />
               </VFlow>
             </HFlow>
             <HFlow hSpacing={1}>
+              <Text fontWeight="bold">Início</Text>
+
               <VFlow vSpacing={0.5}>
-                <Text fontWeight="bold">Início</Text>
                 <DateField
                   name="startDate"
                   onChange={this.onStartChange(fieldValue, change)}
                 />
               </VFlow>
               <VFlow vSpacing={0.5}>
-                <Text fontWeight="bold" />
                 <TimeInput
                   name="startTime"
                   icon="clockOutline"
                   onChange={this.onStartChange(fieldValue, change)}
                 />
               </VFlow>
+              <Text fontWeight="bold">Término</Text>
 
               <VFlow vSpacing={0.5}>
-                <Text fontWeight="bold">Término</Text>
+                <TimeInput
+                  // style={{ marginTop: "25px" }}
+                  name="startTime"
+                  icon="clockOutline"
+                  onChange={this.onStartChange(fieldValue, change)}
+                />
+              </VFlow>
+              <VFlow vSpacing={0.5}>
                 <DateField
                   name="endDate"
                   onChange={this.onEndChange(fieldValue, change)}
-                />
-              </VFlow>
-              <VFlow vSpacing={5.0}>
-                <TimeInput
-                  name="startTime"
-                  icon="clockOutline"
-                  onChange={this.onStartChange(fieldValue, change)}
                 />
               </VFlow>
             </HFlow>
@@ -150,6 +177,7 @@ class EventsCreateView extends React.Component {
               <VFlow vSpacing={0.5}>
                 <Text fontWeight="bold">Local</Text>
                 <TextInput
+                  style={{ width: "680px", height: "32px" }}
                   name="localEvent"
                   icon="mapMarkerOutline"
                   placeholder="Inclua um local ou endereço"
@@ -161,17 +189,9 @@ class EventsCreateView extends React.Component {
               <VFlow vSpacing={0.5}>
                 <Text fontWeight="bold">Descrição</Text>
                 <TextArea
+                  style={{ width: "680px", height: "131px" }}
                   name="localEvent"
                   placeholder="Descrição do evento"
-                  onChange={this.onStartChange(fieldValue, change)}
-                />
-              </VFlow>
-            </HFlow>
-            <HFlow hSpacing={1}>
-              <VFlow vSpacing={0.5}>
-                <Text fontWeight="bold">Convidados</Text>
-                <TextArea
-                  name="convidadosEvent"
                   onChange={this.onStartChange(fieldValue, change)}
                 />
               </VFlow>
@@ -233,5 +253,80 @@ class EventsCreateView extends React.Component {
     }
   };
 }
+
+const createStyles = theme => {
+  return {
+    logo: {
+      flexGrow: 1,
+      img: {
+        height: "2rem",
+        width: "4.5rem"
+      }
+    },
+    logoSvg: {
+      "#meu, #bridge": {
+        fill: `${theme.pallete.text.main} !important`
+      }
+    },
+    leftContainer: {
+      background: theme.pallete.surface.main,
+      width: "54vw",
+      height: "100vh",
+      paddingRight: "3.125rem"
+    },
+    textArea: {
+      width: "100px"
+    },
+
+    rightContainer: {
+      boxShadow: `inset 11px 0px 15px -5px ${theme.pallete.divider}`,
+      width: "46vw",
+      height: "100vh",
+      paddingLeft: "3.5rem",
+      background: theme.pallete.surface.main,
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "right 3rem bottom 2rem",
+      a: {
+        textDecoration: "none",
+        color: theme.pallete.text.main,
+        fontSize: "14px",
+        fontWeight: "bold"
+      }
+    },
+    loginButton: {
+      background: theme.pallete.surface.main,
+      width: "21.5625rem",
+      height: "4rem",
+      paddingLeft: "2rem",
+      paddingRight: "1.5rem",
+      border: `solid 1px ${theme.pallete.divider}`,
+      borderRadius: "0.25rem",
+      marginTop: "1.75rem"
+    },
+    welcomeText: {
+      color: theme.pallete.text.secondary,
+      fontSize: "24px"
+    },
+    googleIcn: {
+      paddingTop: "0.25rem",
+      width: "2rem",
+      height: "2rem"
+    },
+    arrowRight: {
+      paddingTop: "0.5rem",
+      "#seta": {
+        fill: `${theme.pallete.text.main} !important`
+      }
+    },
+    logoB: {
+      "#b": {
+        fill: `${theme.pallete.text.main} !important`
+      },
+      position: "absolute",
+      bottom: "20px",
+      right: "40px"
+    }
+  };
+};
 
 export default EventsCreateView;
