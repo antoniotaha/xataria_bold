@@ -1,5 +1,5 @@
 import { useStyles } from 'bold-ui';
-import { ReactComponent as MeuBridgeLogo } from '../../images/meubridge-logo.svg';
+import { ReactComponent as MeuBridgeLogo } from '../images/meubridge-logo.svg';
 import React from 'react';
 
 export function UserBar(props) {

@@ -1,4 +1,4 @@
-import { ThemeProvider, lightTheme, withStyles } from "bold-ui";
+import { ThemeProvider, DropdownButton, lightTheme, withStyles } from "bold-ui";
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeView from "./view/HomeView";
@@ -6,7 +6,8 @@ import NotHomeView from "./view/NotHomeView";
 import MenuBar from "./components/Menubar";
 import EventsCreateView from "./view/EventsCreateView";
 import { VTabs } from "./components/VTabs";
-import { UserBar } from "./view/user/UserBar";
+import { UserBar } from "./components/UserBar";
+import VisualizarEventoModal from "./view/VisualizarEventoModal";
 
 function App(props) {
   const { css, location, theme } = props;
@@ -41,6 +42,7 @@ function App(props) {
           </nav>
           <main className={css(styles.main)}>
             <Route path="/events" component={EventsCreateView} />
+            <Route path="/events" component={VisualizarEventoModal} />
           </main>
         </div>
       </Router>
