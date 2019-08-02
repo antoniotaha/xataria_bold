@@ -12,7 +12,8 @@
     "emotion": "10.0.9",
     "react-final-form": "6.3.0",
     "final-form": "4.15.0",
-    "final-form-arrays": "1.1.2"
+    "final-form-arrays": "1.1.2",
+    "moment": "2.24.0"
   },
   "scripts": {
     "start": "react-scripts start",
