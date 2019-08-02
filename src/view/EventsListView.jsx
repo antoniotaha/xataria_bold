@@ -1,5 +1,5 @@
 //import { AbsenceDto } from "backend";
-import { Form, Heading, HFlow, DatePickerInput, VFlow, Button } from "bold-ui";
+import { Form, Heading, HFlow, DatePickerInput, VFlow, Button, Text } from "bold-ui";
 import React from "react";
 import timeLineImg from "../images/timeline.png";
 import { useState } from "react";
@@ -14,29 +14,37 @@ function EventsListView(props) {
   return (
     <div
       style={{
-        marginTop: 30
+        marginTop: 50,
+        marginLeft: 380,
+        marginRight: 380
       }}
     >
-      <VFlow alignItems="center">
-        <HFlow hSpacing={1}>
+      <VFlow>
+        <HFlow alignItems='Left' hSpacing={1} style={'border-bottom: 1px solid lightgray'}>
           <Heading level={1}>Eventos</Heading>
-          <DatePickerInput
-            name="dataInicio"
-            value={valueDataInicio}
-            onChange={changeDataInicio}
-          />
-          <DatePickerInput
-            name="dataFim"
-            value={valueDataFim}
-            onChange={changeDataFim}
-          />
-          <Button
-            kind="primary"
-            size="small"
-            onClick={() => props.history.push("/events/create")}
-          >
-            Criar novo
+        </HFlow>
+        <HFlow>
+          <HFlow hSpacing={1}>
+            <DatePickerInput
+              name="dataInicio"
+              value={valueDataInicio}
+              onChange={changeDataInicio}
+            />
+            <DatePickerInput
+              name="dataFim"
+              value={valueDataFim}
+              onChange={changeDataFim}
+            />
+          </HFlow>
+          <HFlow hSpacing={1} style={'margin-left: 400px'}>
+            <Button
+              kind="primary"
+              size="small"
+              onClick={() => props.history.push("/events/create")}
+            >
+              Criar evento
           </Button>
+          </HFlow>
         </HFlow>
         <img
           style={{

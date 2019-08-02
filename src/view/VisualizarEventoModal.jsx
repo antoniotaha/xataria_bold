@@ -109,7 +109,7 @@ function AltTable() {
         {nome: 'Isabelle Pinheiro', presenca: 'Sim'},
         {nome: 'Giselle Nascimento', presenca: 'Sim'},
         {nome: 'Antonio Taha', presenca: 'Sim' },
-        {nome: 'Verônica', presenca: 'Sim'},
+        {nome: 'Verônica Oliveira', presenca: 'Sim'},
         {nome: 'Gustavo Moser', presenca: 'Sim'},
         {nome: 'Teste', presenca: 'Sim' },
         {nome: 'Teste', presenca: 'Não'},
