@@ -48,6 +48,7 @@ function EventsListView(props) {
           </HFlow>
         </HFlow>
         <img
+          onClick={() => props.history.push("/events/visualize")}
           style={{
             marginTop: 60,
             textAlign: "center"
