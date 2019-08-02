@@ -68,9 +68,9 @@ class MenuBar extends React.Component {
               </VTabLink>
             </Tooltip>
             <Tooltip text="Eventos">
-              <VTabLink to="/collaborator">
+              <VTabLink to="/events">
                 <div className={css(styles.imgContainer)}>
-                  <Icon icon="multipleUsers" />
+                  <Icon icon="bookmarkFilled" />
                 </div>
               </VTabLink>
             </Tooltip>
