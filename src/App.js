@@ -31,13 +31,15 @@ function App(props) {
   return (
     <ThemeProvider theme={lightTheme}>
       <Router>
-        <UserBar></UserBar>
-        <nav className={css(styles.nav)}>
-          <MenuBar />
-        </nav>
-        <main className={css(styles.main)}>
-          <Route exact path="/" component={NotHomeView} />
-        </main>
+        <div className={css(styles.container)}>
+          <header className={css(styles.header)}>
+            <UserBar />
+          </header>
+          <nav className={css(styles.nav)}>
+            <MenuBar />
+          </nav>
+          <main className={css(styles.main)} />
+        </div>
       </Router>
     </ThemeProvider>
   );
