@@ -72,11 +72,15 @@ class EventsCreateView extends React.Component {
     const items = ["Oficial", "Social"];
     const [open, setOpen] = useState(1);
 
+    const fechar = () => {
+      setOpen(0);
+      this.props.history.push("/events");
+    };
     return (
       <Modal
         open={open}
         size="large"
-        onClose={() => setOpen(0)}
+        onClose={fechar}
         style={{ height: "750px", width: "750px" }}
       >
         <ModalBody>
