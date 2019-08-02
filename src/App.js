@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeView from "./view/HomeView";
 import NotHomeView from "./view/NotHomeView";
 import MenuBar from "./components/Menubar";
+import { VTabs } from "./components/VTabs";
+import { UserBar } from "./view/user/UserBar";
 
 function App(props) {
   const { css, location, theme } = props;
@@ -29,6 +31,7 @@ function App(props) {
   return (
     <ThemeProvider theme={lightTheme}>
       <Router>
+        <UserBar></UserBar>
         <nav className={css(styles.nav)}>
           <MenuBar />
         </nav>
