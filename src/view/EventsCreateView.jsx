@@ -157,19 +157,18 @@ class EventsCreateView extends React.Component {
                 />
               </VFlow>
               <Text fontWeight="bold">Término</Text>
-
+              <VFlow vSpacing={0.5}>
+                <DateField
+                  name="endDate"
+                  onChange={this.onEndChange(fieldValue, change)}
+                />
+              </VFlow>
               <VFlow vSpacing={0.5}>
                 <TimeInput
                   // style={{ marginTop: "25px" }}
                   name="startTime"
                   icon="clockOutline"
                   onChange={this.onStartChange(fieldValue, change)}
-                />
-              </VFlow>
-              <VFlow vSpacing={0.5}>
-                <DateField
-                  name="endDate"
-                  onChange={this.onEndChange(fieldValue, change)}
                 />
               </VFlow>
             </HFlow>
