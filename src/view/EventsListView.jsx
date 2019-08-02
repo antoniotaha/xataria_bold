@@ -23,6 +23,7 @@ function EventsListView(props) {
         <HFlow alignItems='Left' hSpacing={1} style={'border-bottom: 1px solid lightgray'}>
           <Heading level={1}>Eventos</Heading>
         </HFlow>
+        <VFlow hSpacing={0.2}><strong>Período</strong></VFlow>
         <HFlow>
           <HFlow hSpacing={1}>
             <DatePickerInput
