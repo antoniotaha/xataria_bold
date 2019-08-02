@@ -100,4 +100,4 @@ const roleLabelStyles = theme => ({
   }
 });
 
-export default MenuBar;
+export default withStyles(MenuBar);

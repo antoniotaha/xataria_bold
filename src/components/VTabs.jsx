@@ -25,7 +25,7 @@ const createStyles = theme => {
   };
 };
 
-export class VTabs extends React.Component {
+class VTabs extends React.Component {
   render() {
     const { css, theme, children, style } = this.props;
     const styles = createStyles(theme);
@@ -38,7 +38,7 @@ export class VTabs extends React.Component {
   }
 }
 
-export class VTabLink extends React.Component {
+class VTabLink extends React.Component {
   static defaultProps = {
     active: false
   };
@@ -65,3 +65,8 @@ export class VTabLink extends React.Component {
     return this.props.active || match;
   };
 }
+
+VTabs = withStyles(VTabs);
+VTabLink = withStyles(VTabLink);
+
+export { VTabs, VTabLink };
