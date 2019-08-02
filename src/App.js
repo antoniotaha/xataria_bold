@@ -7,7 +7,7 @@ import MenuBar from "./components/Menubar";
 import EventsCreateView from "./view/EventsCreateView";
 import { VTabs } from "./components/VTabs";
 import { UserBar } from "./components/UserBar";
-import VisualizarEventoModal from './view/VisualizarEventoModal';
+import VisualizarEventoModal from "./view/VisualizarEventoModal";
 
 function App(props) {
   const { css, location, theme } = props;
@@ -41,7 +41,7 @@ function App(props) {
             <MenuBar />
           </nav>
           <main className={css(styles.main)}>
-            <Route path='/events' component={VisualizarEventoModal} />
+            <Route path="/events" component={VisualizarEventoModal} />
           </main>
         </div>
       </Router>
