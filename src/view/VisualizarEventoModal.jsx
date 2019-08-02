@@ -13,7 +13,8 @@ import {
   HFlow,
   VFlow,
   FileUploader,
-  Card
+  Card,
+  PagedTable
 } from "bold-ui";
 import arraiaImg from "../images/arraia.jpg";
 
@@ -52,7 +53,7 @@ function VisualizarEventoModal(props) {
             <Radio name="default" label="Não" />
             <Radio name="default" label="Talvez" />
           </HFlow>
-          <Tabs>
+          <Tabs style={'border-bottom: 1px solid lightgray'}>
             <TabItem active={convidados} onClick={() => setAba(1)}>
               Convidados
             </TabItem>
@@ -60,8 +61,7 @@ function VisualizarEventoModal(props) {
               Imagens
             </TabItem>
           </Tabs>
-          <hr />
-          {!convidados && <Imagens />}
+          {!convidados ? <Imagens /> : <AltTable />}          
         </VFlow>
       </ModalBody>
       <ModalFooter>
@@ -98,5 +98,57 @@ function ImageCard() {
     </VFlow>
   );
 }
+
+function AltTable() {
+    const allRows = Array(10)
+    .fill(true)
+    .reduce(
+      curr => [
+        {nome: 'Odilon Ferreira', presenca: 'Sim'},
+        {nome: 'Rodrigo Costa', presenca: 'Sim' },
+        {nome: 'Isabelle Pinheiro', presenca: 'Sim'},
+        {nome: 'Giselle Nascimento', presenca: 'Sim'},
+        {nome: 'Antonio Taha', presenca: 'Sim' },
+        {nome: 'Verônica', presenca: 'Sim'},
+        {nome: 'Gustavo Moser', presenca: 'Sim'},
+        {nome: 'Teste', presenca: 'Sim' },
+        {nome: 'Teste', presenca: 'Não'},
+        {nome: 'Teste', presenca: 'Talvez'},
+      ],
+      []
+    )
+
+    const [params, setParams] = useState({
+        page: 0,
+        size: 5,
+        totalElements: allRows.length,
+        totalPages: (allRows.length / 5),
+    })
+
+    const rows = allRows.slice(params.page * params.size, params.page * params.size + params.size);
+
+    const handlePageChange = (page) => setParams(state => ({ ...state, page}));
+
+    return (
+        <PagedTable 
+        rows={rows} 
+        page={params.page} 
+        size={params.size} 
+        totalPages={params.totalPages} 
+        totalElements={params.totalElements}
+        onPageChange={handlePageChange}
+        columns={[
+            {
+                name: 'nome',
+                header: 'Nome',
+                render: item => item.nome,
+            },
+            {
+                name: 'presenca',
+                header: 'Presença',
+                render: item => item.presenca,
+            }]} /> );
+}
+
 
 export default VisualizarEventoModal;
