@@ -70,6 +70,15 @@ class EventsCreateView extends React.Component {
     const change = formProps.form.change;
     const itemToString = item => item;
     const items = ["Oficial", "Social"];
+    const convidados = [
+      "Antônio Taha",
+      "Giselle Nascimento",
+      "Gustavo Moser",
+      "Isabelle Pinheiro",
+      "Odilon Ferreira",
+      "Rodrigo Costa",
+      "Verônica Oliveira"
+    ];
     const [open, setOpen] = useState(1);
 
     return (
@@ -77,15 +86,15 @@ class EventsCreateView extends React.Component {
         open={open}
         size="large"
         onClose={() => setOpen(0)}
-        style={{ height: "750px", width: "750px" }}
+        style={{ height: "720px", width: "750px" }}
       >
         <ModalBody>
           <VFlow vSpacing={0.5}>
             <Heading level={1}>Criar evento</Heading>
-            <Tabs style={"border-bottom: 1px solid lightgray"}>
+            {/* <Tabs style={"border-bottom: 1px solid lightgray"}>
               <TabItem active>Dados evento</TabItem>
               <TabItem>Convidados</TabItem>
-            </Tabs>
+            </Tabs> */}
           </VFlow>
 
           <VFlow vSpacing={1} style={{ marginTop: "20px" }}>
@@ -183,15 +192,25 @@ class EventsCreateView extends React.Component {
                 />
               </VFlow>
             </HFlow>
+            <VFlow vSpacing={0.5}>
+              {/* <Text fontWeight="bold" required="true">
+                  Tipo evento
+                </Text> */}
+              <FormControl label="Convidados" required>
+                <Select
+                  items={convidados}
+                  itemToString={itemToString}
+                  name="convidados"
+                  required
+                  multiple
+                />
+              </FormControl>
+            </VFlow>
           </VFlow>
         </ModalBody>
 
         <ModalFooter>
-          <SaveRemoveFooter
-            onSaveClick={formProps.handleSubmit}
-            onRemoveClick={this.delete(fieldValue.id)}
-            editMode={false}
-          />
+          <SaveRemoveFooter style={{ backgroundColor: "white" }} />
         </ModalFooter>
       </Modal>
     );
