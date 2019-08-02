@@ -3,6 +3,7 @@ import {
   Form,
   Heading,
   HFlow,
+  FormControl,
   MaskedInput,
   Modal,
   ModalBody,
@@ -67,33 +68,40 @@ class EventsCreateView extends React.Component {
     const title = this.props.editMode ? "Editar eventos" : "Criar evento";
     const fieldValue = formProps.values;
     const change = formProps.form.change;
+    const itemToString = item => item;
+    const items = ["Oficial", "Social"];
+    const convidados = [
+      "Antônio Taha",
+      "Giselle Nascimento",
+      "Gustavo Moser",
+      "Isabelle Pinheiro",
+      "Odilon Ferreira",
+      "Rodrigo Costa",
+      "Verônica Oliveira"
+    ];
+    const [open, setOpen] = useState(1);
+
+    const fechar = () => {
+      setOpen(0);
+      this.props.history.push("/events");
+    };
     return (
       <Modal
-        open={true}
+        open={open}
         size="large"
-        onClose={this.props.goBack}
-        style={{ height: "750px", width: "750px" }}
+        onClose={fechar}
+        style={{ height: "720px", width: "750px" }}
       >
         <ModalBody>
-          <Container
-            style={{
-              paddingTop: "3rem",
-              //borderBottom: `1px solid `,
-              ul: {
-                margin: "0rem"
-              }
-            }}
-          >
-            <VFlow vSpacing={1.5}>
-              <Heading level={1}> Registro diário</Heading>
-              <Tabs>
-                <TabItem active>Dados do evento</TabItem>
-                <TabItem>Convidados</TabItem>
-              </Tabs>
-            </VFlow>
-          </Container>
+          <VFlow vSpacing={0.5}>
+            <Heading level={1}>Criar evento</Heading>
+            {/* <Tabs style={"border-bottom: 1px solid lightgray"}>
+              <TabItem active>Dados evento</TabItem>
+              <TabItem>Convidados</TabItem>
+            </Tabs> */}
+          </VFlow>
 
-          <VFlow vSpacing={2}>
+          <VFlow vSpacing={1} style={{ marginTop: "20px" }}>
             <HFlow hSpacing={1}>
               <VFlow vSpacing={0.5}>
                 <Text fontWeight="bold" required="true">
@@ -108,25 +116,17 @@ class EventsCreateView extends React.Component {
                 />
               </VFlow>
               <VFlow vSpacing={0.5}>
-                <Text fontWeight="bold" required="true">
-                  Tipo de evento
-                </Text>
-                <Select
-                  name="tipoEvento"
-                  items={[
-                    { value: 1, label: "Social" },
-                    { value: 2, label: "Oficial" }
-                  ]}
-                  //itemToString={itemToString}
-                  //itemIsEqual={itemIsEqual}
-                  placeholder="Selecione uma opção"
-                  multiple={false}
-                  clearable
-                  disabled={false}
-                  loading={false}
-                  //onChange={actionHandler}
-                  //onBlur={actionHandler}
-                />
+                {/* <Text fontWeight="bold" required="true">
+                  Tipo evento
+                </Text> */}
+                <FormControl label="Tipo evento" required>
+                  <Select
+                    items={items}
+                    itemToString={itemToString}
+                    name="favorite pasta"
+                    required
+                  />
+                </FormControl>
               </VFlow>
             </HFlow>
             <HFlow hSpacing={1}>
@@ -196,15 +196,25 @@ class EventsCreateView extends React.Component {
                 />
               </VFlow>
             </HFlow>
+            <VFlow vSpacing={0.5}>
+              {/* <Text fontWeight="bold" required="true">
+                  Tipo evento
+                </Text> */}
+              <FormControl label="Convidados" required>
+                <Select
+                  items={convidados}
+                  itemToString={itemToString}
+                  name="convidados"
+                  required
+                  multiple
+                />
+              </FormControl>
+            </VFlow>
           </VFlow>
         </ModalBody>
 
         <ModalFooter>
-          <SaveRemoveFooter
-            onSaveClick={formProps.handleSubmit}
-            onRemoveClick={this.delete(fieldValue.id)}
-            editMode={false}
-          />
+          <SaveRemoveFooter style={{ backgroundColor: "white" }} />
         </ModalFooter>
       </Modal>
     );
