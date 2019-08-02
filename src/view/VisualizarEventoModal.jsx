@@ -19,9 +19,10 @@ import arraiaImg from "../images/arraia.jpg";
 
 function VisualizarEventoModal(props) {
   const [convidados, setAba] = useState(1);
+  const [visualizarOpen, setOpen] = useState(1);
 
   return (
-    <Modal open={true} size="large">
+    <Modal open={visualizarOpen} onClose={() => setOpen(0)} size="large">
       <ModalBody>
         <Heading level={2}>Visualizar evento</Heading>
         <hr />
@@ -59,6 +60,7 @@ function VisualizarEventoModal(props) {
               Imagens
             </TabItem>
           </Tabs>
+          <hr />
           {!convidados && <Imagens />}
         </VFlow>
       </ModalBody>
